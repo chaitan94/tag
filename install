@@ -1,0 +1,21 @@
+if [ "$(id -u)" != "0" ]; then
+	cat<<RARA
+This must be run as root
+
+Try running sudo ./install
+RARA
+else
+	echo Installing..
+	mkdir /usr/bin/.tag
+	cp tag /usr/bin/.tag
+	cp uninstall /usr/bin/.tag
+	ln /usr/bin/.tag/tag /usr/bin/tag
+	sudo chmod +x /usr/bin/.tag/tag
+	sudo chmod +x /usr/bin/tag
+	tag create
+	sudo chmod 777 /usr/bin/.tag
+	sudo chmod 777 /usr/bin/.tag/tag.db
+	cat<<RARA
+Installation successful!
+RARA
+fi

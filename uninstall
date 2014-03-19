@@ -1,0 +1,11 @@
+if [ "$(id -u)" != "0" ]; then
+	cat<<RARA
+This must be run as root
+
+Try running sudo ./uninstall
+RARA
+else
+	rm -R /usr/bin/.tag
+	rm /usr/bin/tag
+	echo "Uninstallation Successful!"
+fi
